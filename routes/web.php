@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/getLogin', [VisiteurController::class, 'getLogin']);
-Route::post('/login', [VisiteurController::class, 'signIn']);
-Route::get('/getLogout', [VisiteurController::class, 'signOut']);
+Route::get('/getLogin', [\App\Http\Controllers\VisiteurController::class, 'getLogin']);
+Route::post('/login', [\App\Http\Controllers\VisiteurController::class, 'signIn']);
+Route::get('/getLogout', [\App\Http\Controllers\VisiteurController::class, 'signOut']);
