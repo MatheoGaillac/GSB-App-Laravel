@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/getLogin', [VisiteurController::class, 'getLogin']);
+Route::post('/login', [VisiteurController::class, 'signIn']);
+Route::get('/getLogout', [VisiteurController::class, 'signOut']);
