@@ -2,12 +2,13 @@
 
 namespace App\dao;
 
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
-use App\Exceptions\MonException;
-use Illuminate\Support\Facades\Session;
+    use Illuminate\Database\QueryException;
+    use Illuminate\Support\Facades\DB;
+    use App\Exceptions\MonException;
+    use Illuminate\Support\Facades\Session;
 
-class ServiceVisiteur{
+class ServiceVisiteur
+{
     public function login($login, $pwd){
         $connected = false;
         try{
