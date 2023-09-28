@@ -12,18 +12,22 @@ class FraisController extends Controller{
 
     public function getFraisVisiteur(){
         try{
-            $monErreur = Session::get('monErreur');
+            $erreur = Session::get('monErreur');
             Session::forget('monErreur');
             $unServiceFrais = new ServiceFrais();
             $id_visiteur = Session::get('id');
-            $mesFrais = $unServiceFrais->getFrais($id_visiteur);
-            return view ('vues/listeFrais', compact('mesFrais', 'monErreur'));
+            if($id_visiteur != 0) {
+                $mesFrais = $unServiceFrais->getFrais($id_visiteur);
+                return view('vues/listeFrais', compact('mesFrais', 'erreur'));
+            } else{
+                return redirect('/');
+            }
         } catch (MonException $e){
-            $monErreur = $e->getMessage();
-            return view('vues/error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/listeFrais', compact('erreur'));
         } catch (Exception $e){
-            $monErreur = $e->getMessage();
-            return view('vues/error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/listeFrais', compact('erreur'));
         }
     }
 }

@@ -27,4 +27,4 @@
             @endforeach
         </table>
     </div>
-
+@include('vues.error')
