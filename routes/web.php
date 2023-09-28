@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +22,6 @@ Route::get('/getLogin', [\App\Http\Controllers\VisiteurController::class, 'getLo
 Route::post('/login', [\App\Http\Controllers\VisiteurController::class, 'signIn']);
 Route::get('/getLogout', [\App\Http\Controllers\VisiteurController::class, 'signOut']);
 Route::get('/getListeFrais', [\App\Http\Controllers\FraisController::class, 'getFraisVisiteur']);
+Route::get('/modifierFrais/{id}', [\App\Http\Controllers\FraisController::class, 'updateFrais']);
+Route::post('/validerFrais', [\App\Http\Controllers\FraisController::class, 'validateFrais']);
+Route::get('/ajouterFrais', [\App\Http\Controllers\FraisController::class, 'addFrais']);

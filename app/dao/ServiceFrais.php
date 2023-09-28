@@ -9,13 +9,55 @@ use Illuminate\Support\Facades\Session;
 
 class ServiceFrais
 {
-    public function getFrais($id_visiteur){
-        try{
+    public function getFrais($id_visiteur)
+    {
+        try {
             $lesFrais = DB::table('frais')
                 ->Select()
                 ->where('frais.id_visiteur', '=', $id_visiteur)
                 ->get();
             return $lesFrais;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
+    {
+        try {
+            $dateJour = date("Y-m-d");
+            DB::table('frais')
+                ->where('id_frais', '=', $id_frais)
+                ->update(['anneemois' => $anneemois, 'nbjustificatifs' => $nbjustificatifs,
+                    'datemodification' => $dateJour]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getById($id_frais)
+    {
+        try {
+            $monFrais = DB::table('frais')
+                ->Select()
+                ->where('frais.id_frais', '=', $id_frais)
+                ->get()
+                ->first();
+            return $monFrais;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function insertFrais($anneemois, $nbjustificatifs, $id_visiteur){
+        try{
+            DB::table('frais')->insert(
+                ['anneemois' => $anneemois,
+                    'nbjustificatifs' => $nbjustificatifs,
+                    'id_etat' => 2,
+                    'id_visiteur' => $id_visiteur,
+                    'montantvalide' => 0]
+            );
         } catch (QueryException $e){
             throw new MonException($e->getMessage(), 5);
         }
