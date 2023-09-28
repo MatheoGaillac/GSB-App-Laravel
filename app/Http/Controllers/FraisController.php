@@ -17,13 +17,13 @@ class FraisController extends Controller{
             $unServiceFrais = new ServiceFrais();
             $id_visiteur = Session::get('id');
             $mesFrais = $unServiceFrais->getFrais($id_visiteur);
-            return view ('Vues/listeFrais', compact('mesFrais', 'monErreur'));
+            return view ('vues/listeFrais', compact('mesFrais', 'monErreur'));
         } catch (MonException $e){
             $monErreur = $e->getMessage();
-            return view('Vues/pageErreur', compact('monErreur'));
+            return view('vues/error', compact('monErreur'));
         } catch (Exception $e){
             $monErreur = $e->getMessage();
-            return view('Vues/pageErreur', compact('monErreur'));
+            return view('vues/error', compact('monErreur'));
         }
     }
 }

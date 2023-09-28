@@ -56,6 +56,6 @@ class VisiteurController extends Controller
     public function signOut(){
         $unVisiteur = new ServiceVisiteur();
         $unVisiteur->logout();
-        return view('home');
+        return redirect('/');
     }
 }
