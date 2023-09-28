@@ -46,10 +46,10 @@ class VisiteurController extends Controller
             }
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
-            return view('vues/formLogin', compact('erreur'));
+            return view('vues/formLogin', compact('monErreur'));
         } catch (Exception $e) {
             $monErreur = $e->getMessage();
-            return view('vues/formLogin', compact('erreur'));
+            return view('vues/formLogin', compact('monErreur'));
         }
     }
 
