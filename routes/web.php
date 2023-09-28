@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/getLogin', [\App\Http\Controllers\VisiteurController::class, 'getLogin']);
 Route::post('/login', [\App\Http\Controllers\VisiteurController::class, 'signIn']);
 Route::get('/getLogout', [\App\Http\Controllers\VisiteurController::class, 'signOut']);
+Route::get('/getListeFrais', [\App\Http\Controllers\FraisController::class, 'getFraisVisiteur']);
