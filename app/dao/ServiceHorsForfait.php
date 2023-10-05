@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class ServiceHorsForfait
 {
-    public function getListHF($id_frais)
+    public function getListFraisHF($id_frais)
     {
         try {
             $lesFrais = DB::table('fraishorsforfait')
