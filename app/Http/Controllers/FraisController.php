@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Request;
 use Illuminate\Support\Facades\Session;
 use App\metier\Frais;
+Use App\Models\User;
 use Exception;
 use App\Exceptions\MonException;
 use App\dao\ServiceFrais;
@@ -101,15 +102,30 @@ class FraisController extends Controller
     public function addFrais()
     {
         try {
-            $monErreur = "";
+            $erreur = "";
             $titreVue = "Ajout d'une fiche de Frais";
-            return view('vues/formFrais', compact('titreVue', 'monErreur'));
+            return view('vues/formFrais', compact('titreVue', 'erreur'));
         } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
+        }
+    }
+
+    public function supprimeFrais($id_frais){
+        $unServiceFrais = new ServiceFrais();
+        try {
+            $unServiceFrais->deleteFrais($id_frais);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            Session::put('monErreur', $e->getMessage());
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            Session::put('monErreur', $e->getMessage());
+        } finally {
+            return redirect('/getListeFrais');
         }
     }
 }

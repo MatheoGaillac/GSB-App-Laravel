@@ -40,17 +40,19 @@
                     </button>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                    <a href=" ">
-                        <button type="button" class="btn btn-default btn-primary"><span
-                                class="glyphicon glyphicon-list"></span> Frais hors forfait
-                        </button>
-                    </a>
+            @if(isset($unFrais->id_frais))
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                        <a href="">
+                            <button type="button" class="btn btn-default btn-primary"><span
+                                    class="glyphicon glyphicon-list"></span> Frais hors forfait
+                            </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-md-offset-3  col-sm-6 col-sm-offset-3">
-
+            @endif
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                @include('vues.error')
             </div>
         </div>
     </div>

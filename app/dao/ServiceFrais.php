@@ -62,4 +62,12 @@ class ServiceFrais
             throw new MonException($e->getMessage(), 5);
         }
     }
+
+    public function deleteFrais($id_frais){
+        try{
+            DB::table('frais')->where('id_frais', '=', $id_frais)->delete();
+        } catch (QueryException $e){
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 }

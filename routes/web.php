@@ -25,3 +25,4 @@ Route::get('/getListeFrais', [\App\Http\Controllers\FraisController::class, 'get
 Route::get('/modifierFrais/{id}', [\App\Http\Controllers\FraisController::class, 'updateFrais']);
 Route::post('/validerFrais', [\App\Http\Controllers\FraisController::class, 'validateFrais']);
 Route::get('/ajouterFrais', [\App\Http\Controllers\FraisController::class, 'addFrais']);
+Route::get('/supprimerFrais/{id_frais}', [\App\Http\Controllers\FraisController::class, 'supprimeFrais']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\dao\ServiceFrais;
 use App\Exceptions\MonException;
 use Illuminate\Support\Facades\Session;
 use Request;
