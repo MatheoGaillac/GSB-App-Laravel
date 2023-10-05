@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/addHF/{id_frais}', function ($id_frais){
+    return view('vues/formHorsForfait', compact("id_frais"));
+});
+
 Route::get('/getLogin', [\App\Http\Controllers\VisiteurController::class, 'getLogin']);
 Route::post('/login', [\App\Http\Controllers\VisiteurController::class, 'signIn']);
 Route::get('/getLogout', [\App\Http\Controllers\VisiteurController::class, 'signOut']);
@@ -26,3 +30,5 @@ Route::get('/modifierFrais/{id}', [\App\Http\Controllers\FraisController::class,
 Route::post('/validerFrais', [\App\Http\Controllers\FraisController::class, 'validateFrais']);
 Route::get('/ajouterFrais', [\App\Http\Controllers\FraisController::class, 'addFrais']);
 Route::get('/supprimerFrais/{id_frais}', [\App\Http\Controllers\FraisController::class, 'supprimeFrais']);
+Route::get('/getHF/{id_frais}', [\App\Http\Controllers\HorsForfaitController::class, 'getFraisHF']);
+Route::post('/postHF', [\App\Http\Controllers\HorsForfaitController::class, 'postAjouterHFFrais']);

@@ -15,8 +15,8 @@ class FraisController extends Controller
     public function getFraisVisiteur()
     {
         try {
-            $erreur = Session::get('monErreur');
-            Session::forget('monErreur');
+            $erreur = Session::get('erreur');
+            Session::forget('erreur');
             $unServiceFrais = new ServiceFrais();
             $id_visiteur = Session::get('id');
             if ($id_visiteur != 0) {
@@ -37,17 +37,17 @@ class FraisController extends Controller
     public function updateFrais($id_frais)
     {
         try {
-            $monErreur = "";
+            $erreur = "";
             $unServiceFrais = new ServiceFrais();
             $unFrais = $unServiceFrais->getById($id_frais);
             $titreVue = "Modification d'une fiche de frais";
-            return view('vues/formFrais', compact('unFrais', 'titreVue', 'monErreur'));
+            return view('vues/formFrais', compact('unFrais', 'titreVue', 'erreur'));
         } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
         }
     }
 
@@ -67,35 +67,11 @@ class FraisController extends Controller
             }
             return redirect('/getListeFrais');
         } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
-        }
-    }
-
-    public function validateHorsForfait()
-    {
-        try {
-            $id_frais = Request::input('id_frais');
-            $anneemois = Request::input('anneemois');
-            $nbjustificatifs = Request::input('nbjustificatifs');
-            $unServiceFrais = new ServiceFrais();
-            if ($id_frais > 0) {
-                $unServiceFrais->updateFrais($id_frais, $anneemois, $nbjustificatifs);
-            } else {
-                $montant = Request::input('montant');
-                $id_visiteur = Session::get('id');
-                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
-            }
-            return redirect('/getListeFrais');
-        } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
-        } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('vues/formFrais', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/formFrais', compact('erreur'));
         }
     }
 
@@ -120,10 +96,10 @@ class FraisController extends Controller
             $unServiceFrais->deleteFrais($id_frais);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
-            Session::put('monErreur', $e->getMessage());
+            Session::put('erreur', $e->getMessage());
         } catch (Exception $e) {
             $erreur = $e->getMessage();
-            Session::put('monErreur', $e->getMessage());
+            Session::put('erreur', $e->getMessage());
         } finally {
             return redirect('/getListeFrais');
         }

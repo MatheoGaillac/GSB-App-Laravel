@@ -43,7 +43,7 @@
             @if(isset($unFrais->id_frais))
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                        <a href="">
+                        <a href="{{url ('/getHF')}}/{{$unFrais->id_frais}}">
                             <button type="button" class="btn btn-default btn-primary"><span
                                     class="glyphicon glyphicon-list"></span> Frais hors forfait
                             </button>
