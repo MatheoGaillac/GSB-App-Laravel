@@ -17,13 +17,13 @@
                 <tr>
                     <td>{{$unHF->lib_fraishorsforfait}}</td>
                     <td>{{$unHF->montant_fraishorsforfait}}</td>
-                    <td style="text-align: center;"><a href="{{url('/modifierFrais')}}/{{$unHF->id_frais}}">
+                    <td style="text-align: center;"><a href="{{url('/modifierFrais')}}/{{$unHF->id_fraishorsforfait}}">
                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top"
                           title="Modification"></span></a></td>
                     <td style="text-align: center">
                         <a href="#" class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top"
                            title="Suppression" onclick="javascript:if (confirm('Suppression confirmée ?'))
-                {window.location ='{{url('/supprimerFrais')}}/{{$unHF->id_frais}}';}"></a>
+                {window.location ='{{url('/supprimerFrais')}}/{{$unHF->id_fraishorsforfait}}';}"></a>
                     </td>
                 </tr>
             @endforeach

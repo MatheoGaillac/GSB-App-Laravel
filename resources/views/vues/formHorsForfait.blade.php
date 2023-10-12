@@ -36,5 +36,6 @@
                     </button>
                 </div>
             </div>
+            @include('vues.error')
         </div>
     </div>

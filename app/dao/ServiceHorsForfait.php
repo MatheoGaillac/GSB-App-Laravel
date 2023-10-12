@@ -22,12 +22,38 @@ class ServiceHorsForfait
         }
     }
 
-    public function ajoutHFFrais($id_frais, $libelle, $date, $montant){
-        try{
+    public function ajoutHFFrais($id_frais, $libelle, $date, $montant)
+    {
+        try {
             DB::table('fraishorsforfait')->insert(
                 ['id_frais' => $id_frais, 'lib_fraishorsforfait' => $libelle, 'date_fraishorsforfait' => $date,
                     'montant_fraishorsforfait' => $montant]);
-        } catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getHorsForfait($id_fraishorsforfait)
+    {
+        try {
+            $unHorsForfait = DB::table('fraishorsforfait')
+                ->select()
+                ->where('id_fraishorsforfait', '=', $id_fraishorsforfait)
+                ->first();
+            return $unHorsForfait;
+        } catch (\Illuminate\Databse\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function modificationHorsForfait($code, $date, $montant, $lib)
+    {
+        try {
+            DB::table('fraishorsforfait')
+                ->where('id_fraishorsforfait', $code)
+                ->update(['date_fraishorsforfait' => $date, 'montant_fraishorsforfait' => $montant,
+                    'lib_fraishorsforfait' => $lib]);
+        } catch (\Illuminate\Databse\QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
     }
