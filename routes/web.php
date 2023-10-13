@@ -40,4 +40,3 @@ Route::get('/addFraisHorsForfait/{id_frais}', [\App\Http\Controllers\HorsForfait
 Route::post('/postHorsForfait', [\App\Http\Controllers\HorsForfaitController::class, 'postAjouterFraisHorsForfait']);
 Route::get('/modifierFraisHorsForfait/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'modifierFraisHorsForfait']);
 Route::get('/supprimerFraisHorsForfait/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'supprimeFraisHorsForfait']);
-

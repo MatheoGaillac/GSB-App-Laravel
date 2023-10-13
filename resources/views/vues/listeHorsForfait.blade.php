@@ -22,20 +22,27 @@
                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top"
                           title="Modification"></span></a></td>
                     <td style="text-align: center">
-                        <a href="" class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top"
+                        <a class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top"
                            title="Suppression" onclick="javascript:if (confirm('Suppression confirmée ?'))
                 {window.location ='{{url('/supprimerFraisHorsForfait')}}/{{$unHorsForfait->id_fraishorsforfait}}';}"></a>
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <td style="text-align: right">Montant Total :</td>
+                <td style="text-align: left">{{ $totalMontant }}</td>
+            </tr>
         </table>
         <div class="form-group">
-            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <div class="col-md-9 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <a href="{{url ('/addFraisHorsForfait')}}/{{$id_frais}}">
                     <button type="button" class="btn btn-default btn-primary"><span
                             class="glyphicon glyphicon-plus"></span> Ajouter
                     </button>
                 </a>
+                <button type="submit" class="btn btn-default btn-primary">
+                    <span class="glyphicon glyphicon-ok"></span> Valider
+                </button>
             </div>
         </div>
         @include('vues.error')

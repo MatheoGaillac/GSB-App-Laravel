@@ -101,7 +101,7 @@ class FraisController extends Controller
             $erreur = $e->getMessage();
             Session::put('erreur', $e->getMessage());
         } finally {
-            return redirect('/getListeFrais');
+            return back();
         }
     }
 }

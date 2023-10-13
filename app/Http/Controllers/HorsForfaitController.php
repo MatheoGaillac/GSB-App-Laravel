@@ -19,9 +19,16 @@ class HorsForfaitController extends Controller
             Session::forget('erreur');
             $unServiceHorsForfait = new ServiceHorsForfait();
             $id_visiteur = Session::get('id');
+            $mesHorsForfait = $unServiceHorsForfait->getListFraisHorsForfait($id_frais);
+            $totalMontant = 0;
+
+            foreach ($mesHorsForfait as $unHorsForfait) {
+                $totalMontant += $unHorsForfait->montant_fraishorsforfait;
+            }
+
             if ($id_visiteur != 0) {
                 $mesHorsForfait = $unServiceHorsForfait->getListFraisHorsForfait($id_frais);
-                return view('vues/listeHorsForfait', compact('mesHorsForfait', 'erreur', 'id_frais'));
+                return view('vues/listeHorsForfait', compact('mesHorsForfait', 'erreur', 'id_frais', 'totalMontant'));
             } else {
                 return redirect('/');
             }
@@ -111,18 +118,17 @@ class HorsForfaitController extends Controller
         }
     }
 
-    public function supprimeFraisHorsForfait($id_fraishorsforfait){
+    public function supprimeFraisHorsForfait($id_fraishorsforfait)
+    {
         try {
             $unServiceFraisHorsForfait = new ServiceHorsForfait();
             $unServiceFraisHorsForfait->deleteFraisHorsForfait($id_fraishorsforfait);
         } catch (MonException $e) {
-            $erreur = $e->getMessage();
             Session::put('erreur', $e->getMessage());
         } catch (Exception $e) {
-            $erreur = $e->getMessage();
             Session::put('erreur', $e->getMessage());
         } finally {
-            return redirect('home?timestamp=' . time());
+            return redirect('getListeFrais');
         }
     }
 
