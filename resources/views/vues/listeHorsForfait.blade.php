@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$unHF->lib_fraishorsforfait}}</td>
                     <td>{{$unHF->montant_fraishorsforfait}}</td>
-                    <td style="text-align: center;"><a href="{{url('/modifierFrais')}}/{{$unHF->id_fraishorsforfait}}">
+                    <td style="text-align: center;"><a href="{{url('/modifierFraisHF')}}/{{$unHF->id_fraishorsforfait}}">
                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top"
                           title="Modification"></span></a></td>
                     <td style="text-align: center">

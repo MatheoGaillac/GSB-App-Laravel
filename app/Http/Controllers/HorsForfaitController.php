@@ -35,7 +35,6 @@ class HorsForfaitController extends Controller
     }
 
 
-
     public function addFraisHT($id_frais)
     {
         try {
@@ -75,7 +74,8 @@ class HorsForfaitController extends Controller
     public function modifier($id_fraishorsforfait)
     {
         try {
-            $unHorsForfaitService = new ServiceLivres();
+            $erreur = "";
+            $unHorsForfaitService = new ServiceHorsForfait();
             $unHorsForfait = $unHorsForfaitService->getHorsForfait($id_fraishorsforfait);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
@@ -85,7 +85,7 @@ class HorsForfaitController extends Controller
             return view('vues/error', compact('erreur'));
         }
         if (Session::get('id') > 0) {
-            return view('vues/formHorsForfaitModifier', compact('unHorsForfait'));
+            return view('vues/formHorsForfaitModifier', compact('unHorsForfait', 'erreur'));
         } else {
             return redirect('/');
         }
@@ -93,20 +93,21 @@ class HorsForfaitController extends Controller
 
     public function postmodificationhorsforfait($id_fraishorsforfait = null)
     {
-        $code = $id_fraishorsforfait;
-        $date = Request::input("date_fraishorsforfait");
-        $montant = Request::input("montant_fraishorsforfait");
-        $lib = Request::input("lib_fraishorsforfait");
         try {
-            $unHorsForfaitService = new ServiceLivres();
+            $id_frais = Request::input('id_frais');
+            $date = Request::input("date_fraishorsforfait");
+            $montant = Request::input("montant_fraishorsforfait");
+            $lib = Request::input("lib_fraishorsforfait");
+            $unHorsForfaitService = new ServiceHorsForfait();
+            $unHorsForfait = $unHorsForfaitService->getHorsForfait($id_fraishorsforfait);
             $unHorsForfaitService->modificationHorsForfait($id_fraishorsforfait, $date, $montant, $lib);
-            return view('home');
+            return redirect()->route('getHF', $id_frais);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
-            return view('vues/error', compact('erreur'));
+            return view('vues/formHorsForfaitModifier', compact('unHorsForfait', 'erreur'));
         } catch (Exception $e) {
             $erreur = $e->getMessage();
-            return view('vues/error', compact('erreur'));
+            return view('vues/formHorsForfaitModifier', compact('unHorsForfait', 'erreur'));
         }
     }
 

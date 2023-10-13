@@ -18,7 +18,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-
+Route::post('postModifierHorsForfait/{id}',
+    array(
+        'uses' => 'App\Http\Controllers\HorsForfaitController@postmodificationhorsforfait',
+        'as' => 'postmodifierFraisHorsForfait',
+    )
+);
 
 Route::get('/getLogin', [\App\Http\Controllers\VisiteurController::class, 'getLogin']);
 Route::post('/login', [\App\Http\Controllers\VisiteurController::class, 'signIn']);
@@ -31,6 +36,7 @@ Route::get('/supprimerFrais/{id_frais}', [\App\Http\Controllers\FraisController:
 Route::get('/getHF/{id_frais}', [\App\Http\Controllers\HorsForfaitController::class, 'getFraisHF'])->name('getHF');
 Route::post('/postHF', [\App\Http\Controllers\HorsForfaitController::class, 'postAjouterHFFrais']);
 Route::get('/addHF/{id_frais}', [\App\Http\Controllers\HorsForfaitController::class, 'addFraisHT']);
+Route::get('/modifierFraisHF/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'modifier']);
 
 
 
