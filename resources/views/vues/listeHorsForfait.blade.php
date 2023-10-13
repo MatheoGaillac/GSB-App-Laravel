@@ -30,7 +30,7 @@
         </table>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >
-                <a href="{{url ('/addHF')}}/{{$unHF->id_frais}}">
+                <a href="{{url ('/addHF')}}/{{$id_frais}}">
                     <button type="button" class="btn btn-default btn-primary"><span
                             class="glyphicon glyphicon-plus"></span> Ajouter
                     </button>

@@ -21,7 +21,7 @@ class HorsForfaitController extends Controller
             $id_visiteur = Session::get('id');
             if ($id_visiteur != 0) {
                 $mesHF = $unServiceHF->getListFraisHF($id_frais);
-                return view('vues/listeHorsForfait', compact('mesHF', 'erreur'));
+                return view('vues/listeHorsForfait', compact('mesHF', 'erreur', 'id_frais'));
             } else {
                 return redirect('/');
             }
