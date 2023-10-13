@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label">Date : </label>
                         <div class="col-md-2 col-sm-2">
-                            <input type="text" name="date_fraishorsforfait"
+                            <input type="date" name="date_fraishorsforfait"
                                    value="{{$unHorsForfait->date_fraishorsforfait ?? ''}}" class="form-control"
                                    required>
                         </div>

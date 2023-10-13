@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">Période : </label>
                 <div class="col-md-2 col-sm-2">
-                    <input type="text" name="anneemois" value="{{$unFrais->anneemois ?? ""}}" class="form-control"
+                    <input type="month" name="anneemois" value="{{$unFrais->anneemois ?? ""}}" class="form-control"
                            placeholder="AAAAMM" required
                            autofocus>
                 </div>

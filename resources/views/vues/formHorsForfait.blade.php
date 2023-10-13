@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">Date : </label>
                 <div class="col-md-2 col-sm-2">
-                    {{ Form::text('date', null, array_merge(['class' => 'form-control','required' => ''])) }}
+                    {{ Form::date('date', null, array_merge(['class' => 'form-control','required' => ''])) }}
                 </div>
             </div>
             <div class="form-group">
