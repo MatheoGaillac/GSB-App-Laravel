@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class ServiceHorsForfait
 {
-    public function getListFraisHF($id_frais)
+    public function getListFraisHorsForfait($id_frais)
     {
         try {
             $lesFrais = DB::table('fraishorsforfait')
@@ -22,7 +22,7 @@ class ServiceHorsForfait
         }
     }
 
-    public function ajoutHFFrais($id_frais, $libelle, $date, $montant)
+    public function ajoutFraisHorsForfait($id_frais, $libelle, $date, $montant)
     {
         try {
             DB::table('fraishorsforfait')->insert(

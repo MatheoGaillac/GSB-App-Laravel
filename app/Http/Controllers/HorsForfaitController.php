@@ -12,16 +12,16 @@ use App\Exceptions\MonException;
 
 class HorsForfaitController extends Controller
 {
-    public function getFraisHF($id_frais)
+    public function getListFraisHorsForfait($id_frais)
     {
         try {
             $erreur = Session::get('erreur');
             Session::forget('erreur');
-            $unServiceHF = new ServiceHorsForfait();
+            $unServiceHorsForfait = new ServiceHorsForfait();
             $id_visiteur = Session::get('id');
             if ($id_visiteur != 0) {
-                $mesHF = $unServiceHF->getListFraisHF($id_frais);
-                return view('vues/listeHorsForfait', compact('mesHF', 'erreur', 'id_frais'));
+                $mesHorsForfait = $unServiceHorsForfait->getListFraisHorsForfait($id_frais);
+                return view('vues/listeHorsForfait', compact('mesHorsForfait', 'erreur', 'id_frais'));
             } else {
                 return redirect('/');
             }
@@ -35,7 +35,7 @@ class HorsForfaitController extends Controller
     }
 
 
-    public function addFraisHT($id_frais)
+    public function addFraisHorsForfait($id_frais)
     {
         try {
             $erreur = "";
@@ -51,7 +51,7 @@ class HorsForfaitController extends Controller
     }
 
 
-    public function postAjouterHFFrais()
+    public function postAjouterFraisHorsForfait()
     {
         try {
             $erreur = "";
@@ -59,9 +59,9 @@ class HorsForfaitController extends Controller
             $libelle = Request::input("libelle");
             $date = Request::input("date");
             $montant = Request::input("montant");
-            $unHFService = new ServiceHorsForfait();
-            $unHFService->ajoutHFFrais($id_frais, $libelle, $date, $montant);
-            return redirect()->route('getHF', $id_frais);
+            $unFraisHorsForfaitService = new ServiceHorsForfait();
+            $unFraisHorsForfaitService->ajoutFraisHorsForfait($id_frais, $libelle, $date, $montant);
+            return redirect()->route('getFraisHorsForfait', $id_frais);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('vues/formHorsForfait', compact("erreur", 'id_frais'));
@@ -71,7 +71,7 @@ class HorsForfaitController extends Controller
         }
     }
 
-    public function modifier($id_fraishorsforfait)
+    public function modifierFraisHorsForfait($id_fraishorsforfait)
     {
         try {
             $erreur = "";
@@ -101,7 +101,7 @@ class HorsForfaitController extends Controller
             $unHorsForfaitService = new ServiceHorsForfait();
             $unHorsForfait = $unHorsForfaitService->getHorsForfait($id_fraishorsforfait);
             $unHorsForfaitService->modificationHorsForfait($id_fraishorsforfait, $date, $montant, $lib);
-            return redirect()->route('getHF', $id_frais);
+            return redirect()->route('getFraisHorsForfait', $id_frais);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('vues/formHorsForfaitModifier', compact('unHorsForfait', 'erreur'));

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    {!! Form::open(['url' => 'postHF']) !!}
+    {!! Form::open(['url' => 'postHorsForfait']) !!}
     <div class="col-md-12 col-sm-12 well well-md">
         <center>
             <h1></h1>
