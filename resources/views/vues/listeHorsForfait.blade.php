@@ -17,19 +17,20 @@
                 <tr>
                     <td>{{$unHF->lib_fraishorsforfait}}</td>
                     <td>{{$unHF->montant_fraishorsforfait}}</td>
-                    <td style="text-align: center;"><a href="{{url('/modifierFraisHF')}}/{{$unHF->id_fraishorsforfait}}">
+                    <td style="text-align: center;"><a
+                            href="{{url('/modifierFraisHF')}}/{{$unHF->id_fraishorsforfait}}">
                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top"
                           title="Modification"></span></a></td>
                     <td style="text-align: center">
-                        <a href="#" class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top"
+                        <a href="" class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top"
                            title="Suppression" onclick="javascript:if (confirm('Suppression confirmée ?'))
-                {window.location ='{{url('/supprimerFrais')}}/{{$unHF->id_fraishorsforfait}}';}"></a>
+                {window.location ='{{url('/supprimerFraisHF')}}/{{$unHF->id_fraishorsforfait}}';}"></a>
                     </td>
                 </tr>
             @endforeach
         </table>
         <div class="form-group">
-            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <a href="{{url ('/addHF')}}/{{$id_frais}}">
                     <button type="button" class="btn btn-default btn-primary"><span
                             class="glyphicon glyphicon-plus"></span> Ajouter

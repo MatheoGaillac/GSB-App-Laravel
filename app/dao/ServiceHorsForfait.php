@@ -58,4 +58,12 @@ class ServiceHorsForfait
         }
     }
 
+    public function deleteFraisHorsForfait($id_fraishorsforfait){
+        try{
+            DB::table('fraishorsforfait')->where('id_fraishorsforfait', '=', $id_fraishorsforfait)->delete();
+        } catch (QueryException $e){
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
 }

@@ -37,6 +37,5 @@ Route::get('/getHF/{id_frais}', [\App\Http\Controllers\HorsForfaitController::cl
 Route::post('/postHF', [\App\Http\Controllers\HorsForfaitController::class, 'postAjouterHFFrais']);
 Route::get('/addHF/{id_frais}', [\App\Http\Controllers\HorsForfaitController::class, 'addFraisHT']);
 Route::get('/modifierFraisHF/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'modifier']);
-
-
+Route::get('/supprimerFraisHF/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'supprimeFraisHorsForfait']);
 

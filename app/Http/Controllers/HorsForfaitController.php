@@ -111,6 +111,21 @@ class HorsForfaitController extends Controller
         }
     }
 
+    public function supprimeFraisHorsForfait($id_fraishorsforfait){
+        try {
+            $unServiceFraisHorsForfait = new ServiceHorsForfait();
+            $unServiceFraisHorsForfait->deleteFraisHorsForfait($id_fraishorsforfait);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', $e->getMessage());
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', $e->getMessage());
+        } finally {
+            return redirect('home')->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        }
+    }
+
 }
 
 ?>
