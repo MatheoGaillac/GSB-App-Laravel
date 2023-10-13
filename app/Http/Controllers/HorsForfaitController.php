@@ -122,7 +122,7 @@ class HorsForfaitController extends Controller
             $erreur = $e->getMessage();
             Session::put('erreur', $e->getMessage());
         } finally {
-            return redirect('home')->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+            return redirect('home?timestamp=' . time());
         }
     }
 
