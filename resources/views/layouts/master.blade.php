@@ -18,7 +18,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar+ bvn"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">GSB Frais</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">GSB</a>
                     @if  (Session::get('id') > 0)
                     <ul class="nav navbar-nav">
                         <li><a href="{{url('/getListeFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>

@@ -42,7 +42,7 @@ class VisiteurController extends Controller
                     return view('home');
                 }
             } else {
-                $erreur = "Login ou mot de passe inconnu";
+                $erreur = " Login ou mot de passe inconnu";
                 return view('vues/formLogin', compact('erreur'));
             }
         } catch (MonException $e) {
