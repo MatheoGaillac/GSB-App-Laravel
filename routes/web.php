@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::post('postModifierHorsForfait/{id}',
     array(
@@ -32,7 +32,7 @@ Route::get('/getLogout', [\App\Http\Controllers\VisiteurController::class, 'sign
 Route::get('/getListeFrais', [\App\Http\Controllers\FraisController::class, 'getFraisVisiteur']);
 Route::get('/modifierFrais/{id}', [\App\Http\Controllers\FraisController::class, 'updateFrais']);
 Route::post('/validerFrais', [\App\Http\Controllers\FraisController::class, 'validateFrais']);
-Route::get('/ajouterFrais', [\App\Http\Controllers\FraisController::class, 'addFrais']);
+Route::get('/ajouterFrais', [\App\Http\Controllers\FraisController::class, 'addFrais'])->middleware('admin');
 Route::get('/supprimerFrais/{id_frais}', [\App\Http\Controllers\FraisController::class, 'supprimeFrais']);
 
 Route::get('/getFraisHorsForfait/{id_frais}', [\App\Http\Controllers\HorsForfaitController::class, 'getListFraisHorsForfait'])->name('getFraisHorsForfait');
