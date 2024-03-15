@@ -21,9 +21,11 @@
                     <a class="navbar-brand" href="{{ url('/') }}">GSB</a>
                     @if  (Session::get('id') > 0)
                     <ul class="nav navbar-nav">
-                        <li><a href="{{url('/getListeFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
-                        <li><a href="{{url('/ajouterFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter</a></li>
+                        <li><a href="{{url('/getListeFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste des Frais</a></li>
+                        <li><a href="{{url('/ajouterFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter des Frais</a></li>
                         @if (Session::get('type') === 'A')
+                            <li><a href="{{url('/getListPraticiens')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste des Praticiens</a></li>
+                            <li><a href="{{url('/addSpePraticiens')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Gérer les spécialités</a></li>
                         @endif
                     </ul>
                     @endif

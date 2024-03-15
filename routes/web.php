@@ -41,3 +41,5 @@ Route::post('/postHorsForfait', [\App\Http\Controllers\HorsForfaitController::cl
 Route::get('/modifierFraisHorsForfait/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'modifierFraisHorsForfait']);
 Route::get('/supprimerFraisHorsForfait/{id_fraishorsforfait}', [\App\Http\Controllers\HorsForfaitController::class, 'supprimeFraisHorsForfait']);
 
+Route::get('/getListePraticiens', [\App\Http\Controllers\PraticienController::class, 'getListePraticiens'])->middleware('admin');
+Route::get('/addSpePraticiens', [\App\Http\Controllers\PraticienController::class, 'addSpePraticiens'])->middleware('admin');
