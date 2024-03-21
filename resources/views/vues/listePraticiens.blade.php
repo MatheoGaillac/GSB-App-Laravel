@@ -17,3 +17,21 @@
         @endforeach
     </select>
 
+    <div class="col-md-12 well well-md">
+        <center>
+            <h1>Liste des Praticiens</h1>
+        </center>
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+            <tr>
+                <th style="width: 10%">Nom</th>
+                <th style="width: 10%">Prénom</th>
+                <th style="width: 20%;">Adresse</th>
+                <th style="width: 20%;">Ville</th>
+                <th style="width: 20%;">Code Postal</th>
+                <th style="width: 20%;">Coefficient</th>
+            </tr>
+            </thead>
+        </table>
+        @include('vues.error')
+    </div>
