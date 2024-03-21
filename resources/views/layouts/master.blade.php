@@ -24,7 +24,7 @@
                         <li><a href="{{url('/getListeFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste des Frais</a></li>
                         <li><a href="{{url('/ajouterFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter des Frais</a></li>
                         @if (Session::get('type') === 'A')
-                            <li><a href="{{url('/getListPraticiens')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste des Praticiens</a></li>
+                            <li><a href="{{url('/getListePraticiens')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste des Praticiens</a></li>
                             <li><a href="{{url('/addSpecialite')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Gérer les spécialités</a></li>
                         @endif
                     </ul>

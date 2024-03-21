@@ -10,5 +10,14 @@ use Illuminate\Support\Facades\Session;
 
 class ServicePraticien
 {
-
+    public function getPraticiens()
+    {
+        try {
+            $lesPraticiens = DB::table('praticien')
+                ->get();
+            return $lesPraticiens;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 }
