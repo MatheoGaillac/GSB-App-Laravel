@@ -25,4 +25,21 @@ class PraticienController extends Controller
             return view('vues/listePraticiens', compact('erreur'));
         }
     }
+
+    public function getPraticienSearch(Request $request)
+    {
+        $erreur = "";
+        $unServicePraticien = new ServicePraticien();
+
+        // Récupérer le critère de recherche depuis la requête
+        $critere = $request->input('critere');
+
+        // Appel de la méthode searchPraticiens avec le critère
+        $praticiens = $unServicePraticien->searchPraticiens($critere);
+
+        // Faire quelque chose avec les praticiens, comme les passer à la vue
+        return view('vues/listePraticiens', ['praticiens' => $praticiens, 'erreur' => $erreur])->render();
+    }
+
+
 }
