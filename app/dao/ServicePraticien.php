@@ -20,4 +20,15 @@ class ServicePraticien
             throw new MonException($e->getMessage(), 5);
         }
     }
+
+    public function getSpecialites()
+    {
+        try {
+            $lesSpecialites = DB::table('specialite')
+                ->get();
+            return $lesSpecialites;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 }
