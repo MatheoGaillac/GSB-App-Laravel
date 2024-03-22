@@ -48,7 +48,7 @@
                         <td>{{ $praticien->prenom_praticien }}</td>
                         <td>{{ $praticien->adresse_praticien }}</td>
                         <td>{{ $praticien->ville_praticien }}</td>
-                        <td>Aucune spécialité</td>
+                        <td></td>
                         <td></td>
                     </tr>
                 @endif
