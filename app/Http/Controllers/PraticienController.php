@@ -14,21 +14,19 @@ class PraticienController extends Controller
         $erreur = "";
         $unServicePraticien = new ServicePraticien();
 
-        // Récupérer le critère de recherche depuis la requête
         $critere = $request->input('critere');
 
-        // Appel de la méthode searchPraticiens avec le critère
         $praticiens = $unServicePraticien->searchPraticiens($critere);
 
-        // Récupérer les spécialités des praticiens
         foreach ($praticiens as $praticien) {
-            $praticien->specialites = $unServicePraticien->getSpecialites($praticien->id_praticien);
+            if (property_exists($praticien, 'id_specialite')) {
+                $praticien->specialites = $unServicePraticien->getSpecialitesByID($praticien->id_praticien, $praticien->id_specialite);
+            } else {
+                $praticien->specialites = $unServicePraticien->getSpecialites($praticien->id_praticien);
+            }
         }
 
         // Faire quelque chose avec les praticiens, comme les passer à la vue
         return view('vues/listePraticiens', ['praticiens' => $praticiens, 'erreur' => $erreur])->render();
     }
-
-
-
 }
