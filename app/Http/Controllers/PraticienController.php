@@ -29,4 +29,6 @@ class PraticienController extends Controller
         // Faire quelque chose avec les praticiens, comme les passer à la vue
         return view('vues/listePraticiens', ['praticiens' => $praticiens, 'erreur' => $erreur])->render();
     }
+
+
 }
