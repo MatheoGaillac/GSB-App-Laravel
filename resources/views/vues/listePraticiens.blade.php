@@ -17,24 +17,41 @@
                 <th style="width: 10%">Prénom</th>
                 <th style="width: 20%;">Adresse</th>
                 <th style="width: 20%;">Ville</th>
-                <th style="width: 20%;">Spécialités</th>
-                <th style="width: 20%;">Autres</th>
+                <th style="width: 20%;">Spécialité</th>
+                <th style="width: 20%;">Autres Spécialités</th>
             </tr>
             </thead>
             @foreach($praticiens as $praticien)
-                <tr>
-                    <td>{{ $praticien->id_praticien }}</td>
-                    <td>{{ $praticien->nom_praticien }}</td>
-                    <td>{{ $praticien->prenom_praticien }}</td>
-                    <td>{{ $praticien->adresse_praticien }}</td>
-                    <td>{{ $praticien->ville_praticien }}</td>
-                    <td>
-                        @foreach($praticien->specialites as $specialite)
-                            {{ $specialite->lib_specialite }}<br>
-                        @endforeach
-                    </td>
-                    <td></td>
-                </tr>
+                @if($praticien->specialites->count() > 0)
+                    @foreach($praticien->specialites as $specialite)
+                        <tr>
+                            <td>{{ $praticien->id_praticien }}</td>
+                            <td>{{ $praticien->nom_praticien }}</td>
+                            <td>{{ $praticien->prenom_praticien }}</td>
+                            <td>{{ $praticien->adresse_praticien }}</td>
+                            <td>{{ $praticien->ville_praticien }}</td>
+                            <td>{{ $specialite->lib_specialite }}</td>
+                            <td style="text-align: center;">
+                                <a href="{{url('/')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
+                                    <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Modification"></span>
+                                </a>
+                                <a href="{{url('/')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
+                                    <span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Suppression"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td>{{ $praticien->id_praticien }}</td>
+                        <td>{{ $praticien->nom_praticien }}</td>
+                        <td>{{ $praticien->prenom_praticien }}</td>
+                        <td>{{ $praticien->adresse_praticien }}</td>
+                        <td>{{ $praticien->ville_praticien }}</td>
+                        <td>Aucune spécialité</td>
+                        <td></td>
+                    </tr>
+                @endif
             @endforeach
         </table>
         @include('vues.error')
