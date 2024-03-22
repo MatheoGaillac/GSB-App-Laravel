@@ -20,9 +20,15 @@ class PraticienController extends Controller
         // Appel de la méthode searchPraticiens avec le critère
         $praticiens = $unServicePraticien->searchPraticiens($critere);
 
+        // Récupérer les spécialités des praticiens
+        foreach ($praticiens as $praticien) {
+            $praticien->specialites = $unServicePraticien->getSpecialites($praticien->id_praticien);
+        }
+
         // Faire quelque chose avec les praticiens, comme les passer à la vue
         return view('vues/listePraticiens', ['praticiens' => $praticiens, 'erreur' => $erreur])->render();
     }
+
 
 
 }

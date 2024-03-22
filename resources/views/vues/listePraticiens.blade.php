@@ -17,6 +17,8 @@
                 <th style="width: 10%">Prénom</th>
                 <th style="width: 20%;">Adresse</th>
                 <th style="width: 20%;">Ville</th>
+                <th style="width: 20%;">Spécialités</th>
+                <th style="width: 20%;">Autres</th>
             </tr>
             </thead>
             @foreach($praticiens as $praticien)
@@ -26,6 +28,12 @@
                     <td>{{ $praticien->prenom_praticien }}</td>
                     <td>{{ $praticien->adresse_praticien }}</td>
                     <td>{{ $praticien->ville_praticien }}</td>
+                    <td>
+                        @foreach($praticien->specialites as $specialite)
+                            {{ $specialite->lib_specialite }}<br>
+                        @endforeach
+                    </td>
+                    <td></td>
                 </tr>
             @endforeach
         </table>

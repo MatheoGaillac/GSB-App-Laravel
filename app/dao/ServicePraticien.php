@@ -11,6 +11,20 @@ use Illuminate\Support\Facades\Session;
 class ServicePraticien
 {
 
+    public function getSpecialites($idPraticien)
+    {
+        try {
+            $specialites = DB::table('posseder')
+                ->join('specialite', 'posseder.id_specialite', '=', 'specialite.id_specialite')
+                ->where('posseder.id_praticien', '=', $idPraticien)
+                ->get();
+
+            return $specialites;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
     public function searchPraticiens($critere = null)
     {
         try {
