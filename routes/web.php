@@ -45,5 +45,11 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/addSpecialite', [\App\Http\Controllers\PraticienController::class, 'addSpecialite'])->middleware('admin');
     Route::post('/addASpecialite', [\App\Http\Controllers\PraticienController::class, 'postAddSpecialite'])->middleware('admin');
     Route::get('/supprimerSpecialite/{id_specialite}', [\App\Http\Controllers\PraticienController::class, 'supprimerSpecialite'])->middleware('admin');
-    Route::get('/modifierSpecialite/{id}', [\App\Http\Controllers\PraticienController::class, 'modifierSpecialite'])->middleware('admin');
+    Route::get('/modifierSpecialite/{id_praticien}/{id_specialite}', [\App\Http\Controllers\PraticienController::class, 'editSpecialite'])->middleware('admin');
+    Route::post('postmodifierSpecialite/{id_praticien}/{old_id_specialite}',
+        array(
+            'uses' => 'App\Http\Controllers\PraticienController@postEditSpecialite',
+            'as' => 'postmodifierSpecialite',
+        )
+    )->middleware('admin');
 });

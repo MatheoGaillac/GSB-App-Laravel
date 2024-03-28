@@ -32,7 +32,7 @@
                             <td>{{ $praticien->ville_praticien }}</td>
                             <td>{{ $specialite->lib_specialite }}</td>
                             <td style="text-align: center;">
-                                <a href="{{url('/')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
+                                <a href="{{url('/modifierSpecialite')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
                                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Modification"></span>
                                 </a>
                                 <a href="{{url('/')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">

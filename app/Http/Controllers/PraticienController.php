@@ -65,4 +65,41 @@ class PraticienController extends Controller
         }
         return redirect('/');
     }
+
+    public function editSpecialite($id_praticien, $id_specialite)
+    {
+        try {
+            $erreur = "";
+            $unPraticienService = new ServicePraticien();
+            $unPosseder = $unPraticienService->getPossederId($id_praticien, $id_specialite);
+            $mesSpecialites = $unPraticienService->getListSpecialite();
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticienEdit', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticienEdit', compact('erreur'));
+        }
+        return view('vues/formPraticienEdit', compact('unPosseder', 'mesSpecialites', 'erreur'));
+    }
+
+    public function postEditSpecialite(Request $request, $id_praticien = null, $old_id_specialite = null)
+    {
+        $id_specialite = $request->input("id_specialite");
+        $diplome = $request->input("diplome");
+        $coef_prescription = $request->input("coef_prescription");
+        try {
+            $erreur = "";
+            $unPraticienService = new ServicePraticien();
+            $unPraticienService->editSpecialite($id_praticien, $old_id_specialite, $id_specialite, $diplome, $coef_prescription);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+        return redirect('/');
+    }
+
 }

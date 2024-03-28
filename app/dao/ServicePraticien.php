@@ -64,6 +64,20 @@ class ServicePraticien
         }
     }
 
+    public function getPossederId($id_praticien, $id_specialite)
+    {
+        try {
+            $unPosseder = DB::table('posseder')
+                ->select()
+                ->where('id_praticien', '=', $id_praticien)
+                ->where('id_specialite', '=', $id_specialite)
+                ->first();
+            return $unPosseder;
+        } catch (\Illuminate\Databse\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
     public function searchPraticiens($critere = null)
     {
         try {
@@ -95,6 +109,17 @@ class ServicePraticien
                 ['id_praticien' => $id_praticien, 'id_specialite' => $id_specialite, 'diplome' => $diplome, 'coef_prescription' => $coef_prescription]
             );
         } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function editSpecialite($id_praticien, $old_id_specialite, $id_specialite, $diplome, $coef_prescription){
+        try{
+            DB::table('posseder')
+                ->where('id_praticien', $id_praticien)
+                ->where('id_specialite', $old_id_specialite)
+                ->update(['id_specialite' => $id_specialite, 'diplome' => $diplome, 'coef_prescription' => $coef_prescription]);
+        } catch (\Illuminate\Database\QueryException $e){
             throw new MonException($e->getMessage(), 5);
         }
     }
