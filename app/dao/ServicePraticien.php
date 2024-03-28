@@ -11,7 +11,31 @@ use Illuminate\Support\Facades\Session;
 class ServicePraticien
 {
 
-    public function getSpecialites($idPraticien)
+    public function getListSpecialite()
+    {
+        try {
+            $mesSpecialites = DB::table('specialite')
+                ->Select()
+                ->get();
+            return $mesSpecialites;
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getListPraticien()
+    {
+        try {
+            $mesPraticiens = DB::table('praticien')
+                ->Select()
+                ->get();
+            return $mesPraticiens;
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getSpecialitesByPraticien($idPraticien)
     {
         try {
             $specialites = DB::table('posseder')
@@ -50,7 +74,7 @@ class ServicePraticien
                     ->leftJoin('posseder', 'praticien.id_praticien', '=', 'posseder.id_praticien')
                     ->leftJoin('specialite', 'posseder.id_specialite', '=', 'specialite.id_specialite')
                     ->where(function ($query) use ($critere) {
-                        $query->where('praticien.nom_praticien', 'LIKE', "%$critere%");
+                        $query->where('praticien.nom_praticien', 'LIKE', "$critere%");
                     })
                     ->orWhere(function ($query) use ($critere) {
                         $query->where('specialite.lib_specialite', 'LIKE', "%$critere%");
@@ -64,6 +88,14 @@ class ServicePraticien
         }
     }
 
-
-
+    public function addSpecialite($id_praticien, $id_specialite, $diplome, $coef_prescription)
+    {
+        try {
+            DB::table('posseder')->insert(
+                ['id_praticien' => $id_praticien, 'id_specialite' => $id_specialite, 'diplome' => $diplome, 'coef_prescription' => $coef_prescription]
+            );
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 }

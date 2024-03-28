@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Session;
 use App\dao\ServicePraticien;
 use Illuminate\Http\Request;
@@ -22,13 +23,46 @@ class PraticienController extends Controller
             if (property_exists($praticien, 'id_specialite')) {
                 $praticien->specialites = $unServicePraticien->getSpecialitesByID($praticien->id_praticien, $praticien->id_specialite);
             } else {
-                $praticien->specialites = $unServicePraticien->getSpecialites($praticien->id_praticien);
+                $praticien->specialites = $unServicePraticien->getSpecialitesByPraticien($praticien->id_praticien);
             }
         }
-
-        // Faire quelque chose avec les praticiens, comme les passer à la vue
         return view('vues/listePraticiens', ['praticiens' => $praticiens, 'erreur' => $erreur])->render();
     }
 
+    public function addSpecialite()
+    {
+        try {
+            $unPraticienService = new ServicePraticien();
+            $mesSpecialites = $unPraticienService->getListSpecialite();
+            $mesPraticiens = $unPraticienService->getListPraticien();
+            $erreur = "";
+            return view('vues/formPraticien', compact('mesSpecialites', 'mesPraticiens', 'erreur'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticien', compact('mesSpecialites','mesPraticiens', 'erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticien', compact('mesSpecialites','mesPraticiens', 'erreur'));
+        }
+    }
 
+    public function postAddSpecialite(Request $request)
+    {
+        try {
+            $erreur = "";
+            $id_praticien = $request->input('id_praticien');
+            $id_specialite = $request->input('id_specialite');
+            $diplome = $request->input('diplome');
+            $coef_prescription = $request->input('coef_prescription');
+            $uneSpecialiteService = new ServicePraticien();
+            $uneSpecialiteService->addSpecialite($id_praticien, $id_specialite, $diplome, $coef_prescription);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticien', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/formPraticien', compact('erreur'));
+        }
+        return redirect('/');
+    }
 }

@@ -42,8 +42,8 @@ Route::middleware('auth.user')->group(function () {
     );
 
     Route::get('/getListePraticiens', [\App\Http\Controllers\PraticienController::class, 'getPraticienSearch'])->middleware('admin');
-    Route::get('/addSpecialite', [\App\Http\Controllers\PossederController::class, 'addSpecialite'])->middleware('admin');
-    Route::post('/validerSpecialite', [\App\Http\Controllers\PossederController::class, 'validerSpecialite'])->middleware('admin');
-    Route::get('/supprimerSpecialite/{id_specialite}', [\App\Http\Controllers\PossederController::class, 'supprimerSpecialite'])->middleware('admin');
-    Route::get('/modifierSpecialite/{id}', [\App\Http\Controllers\PossederController::class, 'modifierSpecialite'])->middleware('admin');
+    Route::get('/addSpecialite', [\App\Http\Controllers\PraticienController::class, 'addSpecialite'])->middleware('admin');
+    Route::post('/addASpecialite', [\App\Http\Controllers\PraticienController::class, 'postAddSpecialite'])->middleware('admin');
+    Route::get('/supprimerSpecialite/{id_specialite}', [\App\Http\Controllers\PraticienController::class, 'supprimerSpecialite'])->middleware('admin');
+    Route::get('/modifierSpecialite/{id}', [\App\Http\Controllers\PraticienController::class, 'modifierSpecialite'])->middleware('admin');
 });
