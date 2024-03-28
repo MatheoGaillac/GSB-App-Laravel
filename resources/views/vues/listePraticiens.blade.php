@@ -33,11 +33,13 @@
                             <td>{{ $specialite->lib_specialite }}</td>
                             <td style="text-align: center;">
                                 <a href="{{url('/modifierSpecialite')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
-                                    <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Modification"></span>
+                                    <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top"
+                                          title="Modification"></span>
                                 </a>
-                                <a href="{{url('/')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}">
-                                    <span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Suppression"></span>
-                                </a>
+                                <a href="#" class="glyphicon glyphicon-trash" data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="Suppression" onclick="javascript:if (confirm('Suppression confirmée ?'))
+                {window.location ='{{url('/supprimerSpecialite')}}/{{$praticien->id_praticien}}/{{$specialite->id_specialite}}';}"></a>
                             </td>
                         </tr>
                     @endforeach

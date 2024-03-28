@@ -102,4 +102,19 @@ class PraticienController extends Controller
         return redirect('/');
     }
 
+    public function deleteSpecialite($id_praticien, $id_specialite)
+    {
+        try {
+            $unPraticienService = new ServicePraticien();
+            $unPraticienService->deleteSpecialite($id_praticien, $id_specialite);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } finally {
+            return back();
+        }
+    }
 }

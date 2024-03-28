@@ -123,4 +123,12 @@ class ServicePraticien
             throw new MonException($e->getMessage(), 5);
         }
     }
+
+    public function deleteSpecialite($id_praticien, $id_specialite){
+        try{
+            DB::table('posseder')->where('id_praticien', '=', $id_praticien)->where('id_specialite', '=', $id_specialite)->delete();
+        } catch (QueryException $e){
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 }
