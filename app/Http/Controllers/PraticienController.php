@@ -78,7 +78,7 @@ class PraticienController extends Controller
             return view('vues/formPraticienEdit', compact('erreur'));
         } catch (Exception $e) {
             $erreur = $e->getMessage();
-            return view('vues/formPraticienEdit', compact('erreur'));
+            return view('vues/fo   rmPraticienEdit', compact('erreur'));
         }
         return view('vues/formPraticienEdit', compact('unPosseder', 'mesSpecialites', 'erreur'));
     }
