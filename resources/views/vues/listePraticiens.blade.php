@@ -1,10 +1,9 @@
 @extends('layouts.master')
 @section('content')
 
-    <div id="recherche-container">
-        <input type="text" name="recherche" id="recherche" placeholder="Rechercher...">
+    <div id="recherche-container" class="input-group mb-3" style="margin-left: 20px; margin-bottom: 20px;">
+        <input type="text" name="recherche" id="recherche" class="form-control" placeholder="Rechercher...">
     </div>
-
     <div class="col-md-12 well well-md">
         <center>
             <h1>Liste des Praticiens</h1>
