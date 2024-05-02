@@ -10,10 +10,10 @@ class AuthentificationTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_modif_pas_affichee_si_pas_connecte(): void
+    public function test_Liste_des_praticiens_pas_affiché_si_pas_connecté(): void
     {
-        $response = $this->get('/modifFrais/1');
+        $response = $this->get('/getListePraticiens');
 
-        $response->assertStatus(401);
+        $response->assertStatus(302);
     }
 }
