@@ -11,3 +11,38 @@ and open the template in the editor.
 .body{
     padding-top: 80px;
 }
+/* Ajoutez ce CSS à votre fichier gsb.css */
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Couleur de fond légère */
+}
+
+.container {
+    margin-top: 50px; /* Marge en haut pour compenser la barre de navigation */
+}
+
+/* Styles spécifiques pour le contenu */
+.bvn {
+    color: #007bff; /* Couleur bleue pour le titre */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 30px; /* Marge en bas pour espacer du texte suivant */
+}
+
+/* Styles pour les paragraphes */
+p {
+    font-size: 16px; /* Taille de police */
+    line-height: 1.6; /* Hauteur de ligne */
+    color: #333; /* Couleur de texte */
+}
+
+/* Styles pour les liens */
+a {
+    color: #007bff; /* Couleur bleue pour les liens */
+    text-decoration: none; /* Pas de soulignement par défaut */
+}
+a:hover {
+    text-decoration: underline; /* Soulignement au survol */
+}
+
