@@ -73,6 +73,7 @@ class PraticienController extends Controller
             $unPraticienService = new ServicePraticien();
             $unPosseder = $unPraticienService->getPossederId($id_praticien, $id_specialite);
             $mesSpecialites = $unPraticienService->getListSpecialite();
+            $praticien = $unPraticienService->getPraticienById($id_praticien);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('vues/formPraticienEdit', compact('erreur'));
@@ -80,7 +81,7 @@ class PraticienController extends Controller
             $erreur = $e->getMessage();
             return view('vues/fo   rmPraticienEdit', compact('erreur'));
         }
-        return view('vues/formPraticienEdit', compact('unPosseder', 'mesSpecialites', 'erreur'));
+        return view('vues/formPraticienEdit', compact('unPosseder', 'mesSpecialites', 'praticien', 'erreur'));
     }
 
     public function postEditSpecialite(Request $request, $id_praticien = null, $old_id_specialite = null)

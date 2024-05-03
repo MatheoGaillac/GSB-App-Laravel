@@ -35,6 +35,10 @@ class ServicePraticien
         }
     }
 
+    public function getPraticienById($id_praticien) {
+        return DB::table('praticien')->where('id_praticien', $id_praticien)->first();
+    }
+
     public function getSpecialitesByPraticien($idPraticien)
     {
         try {
